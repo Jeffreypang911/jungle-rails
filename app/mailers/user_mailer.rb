@@ -5,8 +5,9 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.order_confirmation.subject
   #
-  def order_confirmation(user)
-    @user = user
-    mail(to: "hello@hello.hello", subject: "Your Order Has Been Placed!")
+  def order_confirmation(current_user, order)
+    @user = current_user
+    @order = order
+    mail(to: @user.email, subject: "Your Order Has Been Placed! #{@order.id}")
   end
 end
