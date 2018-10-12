@@ -1,9 +1,11 @@
 <section class="cart-show">
 
+<% if cart_subtotal_cents > 0 %>  
+  
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
-if cart_subtotal_cents > 0 do  
+
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -31,7 +33,6 @@ if cart_subtotal_cents > 0 do
       </tfoot>
     </table>
   </div>
-end
 
   <div class="row">
     <div class="col-xs-12">
@@ -49,5 +50,12 @@ end
       <% end %>
     </div>
   </div>
+  <% else %>
 
+
+    <header class="page-header">
+    <h1>Empty Cart</h1>
+    </header>
+    <h3>Head back to the <%= link_to 'Home', :root %> page to add something to your cart!</h3>
+  <% end %>
 </section>
