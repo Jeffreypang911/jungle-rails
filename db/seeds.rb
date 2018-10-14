@@ -132,5 +132,37 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+puts "Re-creating Reviews ..."
+
+Review.destroy_all
+
+Review.create!({
+  product_id: 1,
+  user_id: 1,
+  description: 'Watch is too big',
+  rating: 1
+})
+
+Review.create!({
+  product_id: 1,
+  user_id: 1,
+  description: 'Why is it so big wtf',
+  rating: 2
+})
+
+Review.create!({
+  product_id: 2,
+  user_id: 1,
+  description: 'Great for posture',
+  rating: 5
+})
+
+Review.create!({
+  product_id: 2,
+  user_id: 1,
+  description: 'Makes sleeping challenging. Would not buy agian.',
+  rating: 1
+})
 
 puts "DONE!"
+

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
 
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show] do
+    resources :reviews, only: :create
+  end
   resources :categories, only: [:show]
 
   resource :cart, only: [:show] do
@@ -20,7 +22,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :categories, except: [:edit, :update, :show]
   end
-  
+
+  # resources :product do
+  #   resources :reviews , only: :create
+  # end
   
   # These routes will be for signup. The first renders a form in the browse, the second will 
   # receive the form and create a user in our database using the data given to us by the user.
@@ -34,6 +39,8 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+
+  post '/reviews' => 'reviews#create'
 
 
   # config/routes.rb
