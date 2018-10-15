@@ -39,11 +39,11 @@
 
   <div class="row">
     <div class="col-sm-6 col-sm-offset-5">
-      <%= form_for @product, :url => product_reviews_path(:product_id), :method => "post" do |form| %>
+      <%= form_for [@product, @review], url: "#{@product[:id]}/reviews" do |form| %>
         <div class="form-group">
-        <%= form.label "New Review" %>
-        <%= form.text_field :reviews, class: 'form-control' %>
-        <%= form.label "Rating" %>
+        <%= form.label :description %>
+        <%= form.text_field :description, class: 'form-control' %>
+        <%= form.label :rating %>
         <select name="rating">
           <%= options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]) %>
         </div>

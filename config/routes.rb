@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'products#index'
 
   resources :products, only: [:index, :show] do
-    resources :reviews, only: :create
+    resources :reviews, shallow: true
   end
   resources :categories, only: [:show]
 
@@ -40,7 +40,8 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
-  post '/reviews' => 'reviews#create'
+  # comment out by spencer: theres a POST for /product/productid/review
+  # post '/reviews' => 'reviews#create'
 
 
   # config/routes.rb
