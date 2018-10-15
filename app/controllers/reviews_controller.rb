@@ -4,11 +4,16 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        @review = Review.create(review_params)
-        p "TESTING HEREEEEEEEEE", @review
+        @product = Product.find(params[:product_id])
+        @review = @product.reviews.new(review_params)
+        p '================', @review
+        @review.user_id = session[:user_id]
+        @review.save
+        redirect_to @product if @review.save
     end
-
+    
+    private
     def review_params
-        params.permit(:product_id, :description, :rating)
+        params.require(:review).permit(:rating, :description)
     end
 end
